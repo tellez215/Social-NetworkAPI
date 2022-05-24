@@ -76,6 +76,19 @@ const thoughtController = {
                 console.log(err);
                 res.status(500).json(err.message);
             });
+    },
+
+    // delete thought by thought id
+    deleteThought(req, res) {
+        Thought.findByIdAndDelete({ _id: req.params.thoughtId }, { runValidators: true, new: true })
+            .then(thoughts => {
+                if (!thoughts) {
+                    res.status(404).json({ message: 'No user found with this ID!' });
+                    return;
+                }
+                res.json(thoughts);
+            })
+            .catch(err => res.json(err));
     }
 
 }
