@@ -1,7 +1,26 @@
 {
-  "dependencies": {
-    "express": "^4.18.1",
-    "mongoose": "^6.3.4",
-    "node": "^17.7.2"
-  }
+    "name": "social-networkapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tellez215/Social-NetworkAPI.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tellez215/Social-NetworkAPI/issues"
+    },
+    "homepage": "https://github.com/tellez215/Social-NetworkAPI#readme",
+    "dependencies": {
+        "express": "^4.18.1",
+        "moment": "^2.29.3",
+        "mongoose": "^6.3.4"
+    }
 }
