@@ -9,8 +9,10 @@ const userController = {
 
     getUserByID(req, res) {
         User.findOne({ _id: req.params.id })
+            .populate('thoughts')
+            .populate('friends')
             .then(users => res.json(users))
-            .catch(err => res.status(500).json(err));
+            .catch(err => res.status(500).json(err.message));
     },
 
     addUser(req, res) {
@@ -20,7 +22,7 @@ const userController = {
     },
 
     updateUser(req, res) {
-        User.findOneAndUpdate({ _id: req.params.id }, { runValidators: true, new: true })
+        User.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true, new: true })
             .then((users) =>
                 !users ?
                 res.status(404).json({ message: 'No user with this id!' }) :
@@ -29,13 +31,14 @@ const userController = {
             .catch((err) => res.status(500).json(err));
     },
 
-    deleteUser(req, res) {
-        User.findOneAndRemove({ _id: params.id })
+    deleteUser({ params }, res) {
+        User.findOneAndRemove({ _id: params.id }, { runValidators: true, new: true })
             .then(users => {
                 if (!users) {
                     res.status(500).json({ message: 'No user found with this ID!' });
                     return;
                 }
+                res.json({ message: 'User Deleted!' })
             })
     },
 
